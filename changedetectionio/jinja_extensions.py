@@ -27,7 +27,8 @@ class TimeExtension(Extension):
         
         # Fix weekday parameter can not be float
         if 'weekday' in shift_params:
-            shift_params['weekday'] = int(shift_params['weekday'])
+            shift_params['weekday'] = int(shift_params['weekday']) % 7
+            d = d.shift(weeks=(int(shift_params['weekday']) // 7))
 
         d = d.shift(**shift_params)
 
